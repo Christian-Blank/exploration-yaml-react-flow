@@ -1,0 +1,134 @@
+openapi: 3.1.0
+info:
+  title: Process Node Schema
+  version: 0.1.0
+  description: |
+    Schema for process nodes in the knowledge graph system.
+    Extends the base node schema with process-specific properties.
+
+components:
+  schemas:
+    ProcessNode:
+      allOf:
+        - $ref: "../base/node.yaml#/components/schemas/BaseNode"
+        - type: object
+          description: Schema for process nodes representing workflows or sequences of tasks
+          required:
+            - status
+          properties:
+            status:
+              type: string
+              description: Current status of the process
+              enum:
+                - draft
+                - active
+                - completed
+                - archived
+                - failed
+              default: "draft"
+              example: "active"
+            
+            status_reason:
+              type: string
+              description: Optional reason for the current status
+              example: "Waiting for approval"
+            
+            priority:
+              type: string
+              description: Priority level of the process
+              enum:
+                - low
+                - medium
+                - high
+                - critical
+              default: "medium"
+              example: "high"
+            
+            owner:
+              type: string
+              description: Identifier of the entity responsible for the process
+              example: "user-456"
+            
+            assignees:
+              type: array
+              description: List of entity identifiers assigned to the process
+              items:
+                type: string
+              default: []
+              example: ["user-123", "user-456"]
+            
+            start_date:
+              type: string
+              format: date-time
+              description: Scheduled or actual start date of the process
+              example: "2023-01-10T09:00:00Z"
+            
+            due_date:
+              type: string
+              format: date-time
+              description: Scheduled due date of the process
+              example: "2023-01-20T17:00:00Z"
+            
+            completion_date:
+              type: string
+              format: date-time
+              description: Actual completion date of the process
+              example: "2023-01-19T16:30:00Z"
+            
+            progress:
+              type: integer
+              description: Current progress of the process (0-100)
+              minimum: 0
+              maximum: 100
+              default: 0
+              example: 75
+            
+            steps:
+              type: array
+              description: Ordered list of steps in the process
+              items:
+                type: object
+                required:
+                  - id
+                  - title
+                properties:
+                  id:
+                    type: string
+                    description: Unique identifier for the step
+                    example: "step-1"
+                  title:
+                    type: string
+                    description: Human-readable title for the step
+                    example: "Prepare documentation"
+                  description:
+                    type: string
+                    description: Detailed description of the step
+                    example: "Create and review all necessary documentation for the process."
+                  task_ids:
+                    type: array
+                    description: IDs of tasks associated with this step
+                    items:
+                      type: string
+                      format: uuid
+                    default: []
+                    example: ["123e4567-e89b-12d3-a456-426614174003"]
+                  status:
+                    type: string
+                    description: Current status of the step
+                    enum:
+                      - pending
+                      - in_progress
+                      - completed
+                      - skipped
+                    default: "pending"
+                    example: "in_progress"
+              default: []
+            
+            dependencies:
+              type: array
+              description: IDs of other processes that this process depends on
+              items:
+                type: string
+                format: uuid
+              default: []
+              example: ["123e4567-e89b-12d3-a456-426614174004"] 

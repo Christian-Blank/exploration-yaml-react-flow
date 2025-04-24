@@ -1,0 +1,150 @@
+openapi: 3.1.0
+info:
+  title: Document Node Schema
+  version: 0.1.0
+  description: |
+    Schema for document nodes in the knowledge graph system.
+    Extends the base node schema with document-specific properties.
+
+components:
+  schemas:
+    DocumentNode:
+      allOf:
+        - $ref: "../base/node.yaml#/components/schemas/BaseNode"
+        - type: object
+          description: Schema for document nodes representing knowledge artifacts
+          required:
+            - status
+            - document_type
+          properties:
+            status:
+              type: string
+              description: Current status of the document
+              enum:
+                - draft
+                - review
+                - approved
+                - published
+                - archived
+                - deprecated
+              default: "draft"
+              example: "published"
+            
+            document_type:
+              type: string
+              description: Type of document
+              enum:
+                - specification
+                - decision
+                - guide
+                - report
+                - template
+                - note
+                - reference
+              example: "specification"
+            
+            version:
+              type: string
+              description: Version identifier for the document
+              pattern: "^\\d+\\.\\d+\\.\\d+$"
+              example: "1.0.0"
+            
+            authors:
+              type: array
+              description: List of entity identifiers who authored the document
+              items:
+                type: string
+              default: []
+              example: ["user-123", "user-456"]
+            
+            reviewers:
+              type: array
+              description: List of entity identifiers who reviewed the document
+              items:
+                type: string
+              default: []
+              example: ["user-789"]
+            
+            content_format:
+              type: string
+              description: Format of the document content
+              enum:
+                - markdown
+                - html
+                - plain_text
+                - restructured_text
+                - asciidoc
+                - json
+                - yaml
+              default: "markdown"
+              example: "markdown"
+            
+            content:
+              type: string
+              description: The actual content of the document
+              example: "# Example Document\n\nThis is an example document content in Markdown format."
+            
+            content_url:
+              type: string
+              format: uri
+              description: URL to the document content if stored externally
+              example: "https://example.com/documents/123.md"
+            
+            external_references:
+              type: array
+              description: List of external references related to this document
+              items:
+                type: object
+                required:
+                  - title
+                  - url
+                properties:
+                  title:
+                    type: string
+                    description: Title of the reference
+                    example: "External Documentation"
+                  description:
+                    type: string
+                    description: Description of the reference
+                    example: "Reference to external documentation"
+                  url:
+                    type: string
+                    format: uri
+                    description: URL to the reference
+                    example: "https://example.com/external-docs"
+              default: []
+            
+            related_processes:
+              type: array
+              description: IDs of process nodes related to this document
+              items:
+                type: string
+                format: uuid
+              default: []
+              example: ["123e4567-e89b-12d3-a456-426614174007"]
+            
+            keywords:
+              type: array
+              description: List of keywords for improved searchability
+              items:
+                type: string
+              default: []
+              example: ["documentation", "specification", "example"]
+            
+            approval_date:
+              type: string
+              format: date-time
+              description: Date when the document was approved
+              example: "2023-01-20T10:00:00Z"
+            
+            publication_date:
+              type: string
+              format: date-time
+              description: Date when the document was published
+              example: "2023-01-21T12:00:00Z"
+            
+            expiration_date:
+              type: string
+              format: date-time
+              description: Date when the document expires or needs review
+              example: "2024-01-21T12:00:00Z" 

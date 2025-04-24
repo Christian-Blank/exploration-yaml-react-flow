@@ -1,0 +1,41 @@
+id: "{{uuid}}"
+type: "task"
+title: "{{title}}"
+description: "{{description}}"
+parent_ids: []
+child_ids: []
+created_at: "{{now}}"
+updated_at: "{{now}}"
+created_by: "{{user}}"
+updated_by: "{{user}}"
+tags: []
+metadata: {}
+status: "pending"
+status_reason: ""
+priority: "medium"
+assignee: "{{user}}"
+reviewer: ""
+due_date: "{{future_date}}"
+start_date: "{{now}}"
+completion_date: null
+estimated_effort:
+  unit: "hours"
+  value: 4
+actual_effort:
+  unit: "hours"
+  value: 0
+checklist:
+  - id: "item-1"
+    text: "Understand requirements"
+    completed: false
+  - id: "item-2"
+    text: "Complete implementation"
+    completed: false
+  - id: "item-3"
+    text: "Review work"
+    completed: false
+  - id: "item-4"
+    text: "Update documentation"
+    completed: false
+dependencies: []
+related_documents: [] 

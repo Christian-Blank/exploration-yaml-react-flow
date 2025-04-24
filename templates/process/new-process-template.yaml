@@ -1,0 +1,46 @@
+id: "{{uuid}}"
+type: "process"
+title: "{{title}}"
+description: "{{description}}"
+parent_ids: []
+child_ids: []
+created_at: "{{now}}"
+updated_at: "{{now}}"
+created_by: "{{user}}"
+updated_by: "{{user}}"
+tags: []
+metadata: {}
+status: "draft"
+status_reason: ""
+priority: "medium"
+owner: "{{user}}"
+assignees: []
+start_date: "{{now}}"
+due_date: "{{future_date}}"
+completion_date: null
+progress: 0
+steps:
+  - id: "step-1"
+    title: "Define Process Scope"
+    description: "Define the purpose, goals, and boundaries of the process."
+    task_ids: []
+    status: "pending"
+  
+  - id: "step-2"
+    title: "Identify Process Steps"
+    description: "Identify and document the key steps in the process."
+    task_ids: []
+    status: "pending"
+  
+  - id: "step-3"
+    title: "Create Supporting Tasks"
+    description: "Create specific tasks needed to complete the process."
+    task_ids: []
+    status: "pending"
+  
+  - id: "step-4"
+    title: "Review and Finalize"
+    description: "Review the process definition and finalize it."
+    task_ids: []
+    status: "pending"
+dependencies: [] 

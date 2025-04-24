@@ -1,0 +1,162 @@
+openapi: 3.1.0
+info:
+  title: Task Node Schema
+  version: 0.1.0
+  description: |
+    Schema for task nodes in the knowledge graph system.
+    Extends the base node schema with task-specific properties.
+
+components:
+  schemas:
+    TaskNode:
+      allOf:
+        - $ref: "../base/node.yaml#/components/schemas/BaseNode"
+        - type: object
+          description: Schema for task nodes representing individual units of work
+          required:
+            - status
+          properties:
+            status:
+              type: string
+              description: Current status of the task
+              enum:
+                - pending
+                - in_progress
+                - blocked
+                - completed
+                - cancelled
+              default: "pending"
+              example: "in_progress"
+            
+            status_reason:
+              type: string
+              description: Optional reason for the current status
+              example: "Waiting for dependency completion"
+            
+            priority:
+              type: string
+              description: Priority level of the task
+              enum:
+                - low
+                - medium
+                - high
+                - critical
+              default: "medium"
+              example: "high"
+            
+            assignee:
+              type: string
+              description: Identifier of the entity assigned to the task
+              example: "user-123"
+            
+            reviewer:
+              type: string
+              description: Identifier of the entity responsible for reviewing the task
+              example: "user-456"
+            
+            due_date:
+              type: string
+              format: date-time
+              description: Scheduled due date of the task
+              example: "2023-01-15T17:00:00Z"
+            
+            start_date:
+              type: string
+              format: date-time
+              description: Scheduled or actual start date of the task
+              example: "2023-01-10T09:00:00Z"
+            
+            completion_date:
+              type: string
+              format: date-time
+              description: Actual completion date of the task
+              example: "2023-01-14T16:30:00Z"
+            
+            estimated_effort:
+              type: object
+              description: Estimated effort required to complete the task
+              properties:
+                unit:
+                  type: string
+                  description: Unit of effort measurement
+                  enum:
+                    - minutes
+                    - hours
+                    - days
+                    - points
+                  default: "hours"
+                  example: "hours"
+                value:
+                  type: number
+                  description: Estimated effort value
+                  minimum: 0
+                  example: 4
+              required:
+                - unit
+                - value
+            
+            actual_effort:
+              type: object
+              description: Actual effort expended on the task
+              properties:
+                unit:
+                  type: string
+                  description: Unit of effort measurement
+                  enum:
+                    - minutes
+                    - hours
+                    - days
+                    - points
+                  default: "hours"
+                  example: "hours"
+                value:
+                  type: number
+                  description: Actual effort value
+                  minimum: 0
+                  example: 4.5
+              required:
+                - unit
+                - value
+            
+            checklist:
+              type: array
+              description: List of items to check off as part of the task
+              items:
+                type: object
+                required:
+                  - id
+                  - text
+                  - completed
+                properties:
+                  id:
+                    type: string
+                    description: Unique identifier for the checklist item
+                    example: "item-1"
+                  text:
+                    type: string
+                    description: Description of the checklist item
+                    example: "Review code for security issues"
+                  completed:
+                    type: boolean
+                    description: Whether the checklist item is completed
+                    default: false
+                    example: true
+              default: []
+            
+            dependencies:
+              type: array
+              description: IDs of other tasks that this task depends on
+              items:
+                type: string
+                format: uuid
+              default: []
+              example: ["123e4567-e89b-12d3-a456-426614174005"]
+            
+            related_documents:
+              type: array
+              description: IDs of document nodes related to this task
+              items:
+                type: string
+                format: uuid
+              default: []
+              example: ["123e4567-e89b-12d3-a456-426614174006"] 

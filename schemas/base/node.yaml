@@ -1,0 +1,98 @@
+openapi: 3.1.0
+info:
+  title: Base Node Schema
+  version: 0.1.0
+  description: |
+    Base schema for all nodes in the knowledge graph system.
+    All node types extend this base schema.
+
+components:
+  schemas:
+    BaseNode:
+      type: object
+      description: Base schema for all nodes in the knowledge graph system
+      required:
+        - id
+        - type
+        - created_at
+        - updated_at
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Unique identifier for the node
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        
+        type:
+          type: string
+          description: The type of node (determines the schema to use for validation)
+          example: "process"
+        
+        title:
+          type: string
+          description: Human-readable title for the node
+          example: "Example Process"
+        
+        description:
+          type: string
+          description: Detailed description of the node
+          example: "This is an example process node that demonstrates the base schema."
+        
+        parent_ids:
+          type: array
+          description: IDs of parent nodes in the graph
+          items:
+            type: string
+            format: uuid
+          default: []
+          example: ["123e4567-e89b-12d3-a456-426614174001"]
+        
+        child_ids:
+          type: array
+          description: IDs of child nodes in the graph
+          items:
+            type: string
+            format: uuid
+          default: []
+          example: ["123e4567-e89b-12d3-a456-426614174002"]
+        
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp when the node was created
+          example: "2023-01-01T12:00:00Z"
+        
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp when the node was last updated
+          example: "2023-01-02T12:00:00Z"
+        
+        created_by:
+          type: string
+          description: Identifier of the entity (user or system) that created the node
+          example: "user-123"
+        
+        updated_by:
+          type: string
+          description: Identifier of the entity (user or system) that last updated the node
+          example: "system-autoupdate"
+        
+        tags:
+          type: array
+          description: List of tags for categorizing and filtering nodes
+          items:
+            type: string
+          default: []
+          example: ["example", "documentation"]
+        
+        metadata:
+          type: object
+          description: Additional metadata for the node
+          additionalProperties: true
+          default: {}
+          example:
+            priority: "high"
+            source: "manual-entry"
+      
+      additionalProperties: false 

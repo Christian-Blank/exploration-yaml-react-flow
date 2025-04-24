@@ -1,2 +1,111 @@
-# exploration-yaml-react-flow
-Exploration of editing and viewing yaml schemas and files with react flow
+# Schema-First Node-Based Knowledge Graph System
+
+A unified system using YAML-defined schemas adhering to OpenAPI 3.1 standards to compile into Python and TypeScript types. The system centers around node-based entities representing processes and documents, enabling easy human readability, automated type generation, and developer-friendly workflows. The ultimate goal is to create an orchestration layer where humans and AI collaborate seamlessly.
+
+## Project Overview
+
+This project implements a schema-first system where:
+
+- Schemas are the single source of truth, defined in YAML and compiled to JSON Schema
+- All entities form a node-based directed graph structure for knowledge mapping
+- Types are automatically generated for Python and TypeScript
+- A simple local server serves schemas and supports fast developer iteration
+- A CLI tool enables template creation, schema validation, and file management
+- A web UI (Next.js, React, React-Flow) provides interactive node creation, viewing, and editing
+
+## Getting Started
+
+### Prerequisites
+
+- [Node.js v22+](https://nodejs.org/) (recommend using [NVM](https://github.com/nvm-sh/nvm))
+- [PNPM](https://pnpm.io/) v8+
+- [Python 3.13+](https://www.python.org/)
+- [Poetry 2.1+](https://python-poetry.org/)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/schema-first-knowledge-graph.git
+   cd schema-first-knowledge-graph
+   ```
+
+2. Install Node.js dependencies:
+   ```bash
+   pnpm install
+   ```
+
+3. Install Python dependencies:
+   ```bash
+   poetry install
+   ```
+
+### Development
+
+This project uses Nx for monorepo management. Here are some useful commands:
+
+- Build all packages:
+  ```bash
+  pnpm build
+  ```
+
+- Run tests:
+  ```bash
+  pnpm test
+  ```
+
+- Lint code:
+  ```bash
+  pnpm lint
+  ```
+
+- Format code:
+  ```bash
+  pnpm format
+  ```
+
+## Project Structure
+
+```
+exploration-yaml-react-flow/
+├── docs/                       # Project documentation
+│   ├── architecture/           # Architecture documentation
+│   ├── decisions/              # Decision records
+│   ├── guides/                 # User and developer guides
+│   ├── project-management/     # Project planning and tracking
+│   └── specs/                  # Detailed specifications
+├── packages/                   # Monorepo packages
+│   ├── core/                   # Core library (shared code)
+│   ├── schema-server/          # Schema serving API
+│   ├── cli/                    # Command-line interface
+│   ├── type-generators/        # Code generation tools
+│   └── web/                    # Next.js web application
+├── schemas/                    # Schema definitions
+├── templates/                  # Node templates
+├── examples/                   # Example nodes and processes
+└── tests/                      # End-to-end tests
+```
+
+## Documentation
+
+Our documentation follows a knowledge graph structure, with interconnected documents and clear entry points for each domain. The main entry point is [docs/index.md](./docs/index.md).
+
+Key documentation sections:
+
+- [Architecture](./docs/architecture/index.md) - System architecture and design
+- [Decision Records](./docs/decisions/index.md) - Key technical decisions with context and rationale
+- [Guides](./docs/guides/index.md) - User and developer guides
+- [Specifications](./docs/specs/index.md) - Detailed technical specifications
+- [Project Management](./docs/project-management/index.md) - Implementation plans and progress tracking
+
+## Implementation Plan
+
+For the detailed development roadmap, see the [Implementation Plan](./docs/project-management/implementation-plan.md).
+
+## Contributing
+
+Please read our [contribution guidelines](./docs/guides/CONTRIBUTING.md) before submitting a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.

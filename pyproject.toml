@@ -1,0 +1,58 @@
+[tool.poetry]
+name = "schema-first-knowledge-graph"
+version = "0.1.0"
+description = "Schema-First Node-Based Knowledge Graph System for Human-AI Orchestration"
+authors = ["Your Name <your.email@example.com>"]
+readme = "README.md"
+packages = [
+    {include = "schema_first", from = "packages/python"}
+]
+
+[tool.poetry.dependencies]
+python = "^3.13"
+pydantic = "^2.11.0"
+typer = {extras = ["all"], version = "^0.9.0"}
+pyyaml = "^6.0.1"
+fastapi = "^0.110.0"
+uvicorn = {extras = ["standard"], version = "^0.27.0"}
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.0.0"
+black = "^24.1.0"
+ruff = "^0.1.13"
+mypy = "^1.8.0"
+
+[tool.black]
+line-length = 88
+target-version = ["py313"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py313"
+select = ["E", "F", "B", "I", "N", "UP", "ANN", "COM818", "COM819", "D", "ERA", "PTH", "PYI", "RET", "SIM", "TRY", "C4"]
+ignore = ["D203", "D213"]
+
+[tool.ruff.per-file-ignores]
+"__init__.py" = ["F401"]
+"tests/*" = ["D100", "D101", "D102", "D103", "D104", "ANN"]
+
+[tool.ruff.isort]
+known-first-party = ["schema_first"]
+
+[tool.mypy]
+python_version = "3.13"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+
+[build-system]
+requires = ["poetry-core>=2.1.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+schema-first = "schema_first.cli.main:app" 
