@@ -39,6 +39,10 @@
 - Keep refactoring and feature development separate where possible.
 - Break down implementation plan into phase-specific documents under 400 lines each.
 - Create checkpoint reports at significant milestones to document progress and provide review guidance.
+- Run local CI checks before pushing to catch issues early:
+  - Use `pnpm run ci:local` to run all validation checks manually
+  - Pre-push hook automatically runs these checks before pushing
+  - Use `git push --no-verify` only when absolutely necessary and document why
 
 ## Documentation Standards
 - Update documentation immediately upon decisions, code changes, or refactoring.
