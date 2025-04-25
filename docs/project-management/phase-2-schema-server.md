@@ -1,5 +1,8 @@
 # Phase 2: Schema Server and Type Generation
 
+**Parent:** [Implementation Plan](./implementation-plan.md)  
+**Previous Phase:** [Phase 1: Project Setup](./phase-1-project-setup.md)
+
 ## Objective
 
 Establish local schema server and automatic type generation.
@@ -30,7 +33,11 @@ Establish local schema server and automatic type generation.
 
 ## Dependencies
 
-- Phase 1: Project Setup and Core Schema Definition
+- [Phase 1: Project Setup and Core Schema Definition](./phase-1-project-setup.md)
+
+## Next Phase
+
+[Phase 3: CLI Development](./phase-3-cli-development.md)
 
 ## Related Documentation
 

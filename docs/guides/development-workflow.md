@@ -20,6 +20,35 @@ This guide explains the streamlined workflow for contributing to this project.
    - pnpm >= 8.0.0
    - Python >= 3.13 (for Python tools)
 
+## Project Management Structure
+
+Our project follows a hierarchical structure for organization:
+
+```
+Implementation Plan
+  └── Phase 1: Project Setup
+      ├── Task 1: Repository Setup
+      │   ├── Step 1.1
+      │   └── Step 1.2
+      └── Task 2: Environment Config
+          ├── Step 2.1
+          └── Step 2.2
+```
+
+Each phase has:
+- A dedicated document with clear links to parent/child documents
+- Tasks broken down into specific steps
+- Checkpoints for commits after task completion
+- Acceptance criteria for each task and the overall phase
+- A pull request at the end of the phase
+
+When working on tasks:
+1. Reference the implementation plan to find your phase
+2. Navigate to the specific task in the phase document
+3. Follow the defined steps
+4. Create checkpoints and commits after completing tasks
+5. Update documentation to reflect progress
+
 ## Daily Development Workflow
 
 ### 1. Start with a fresh branch
@@ -79,9 +108,13 @@ git push --no-verify
 
 After each meaningful commit:
 
-1. Check off completed items in the implementation plan
-2. Update relevant documentation
-3. Create/update checkpoint reports for milestones
+1. Check off completed steps in the task list
+2. Update task status in the phase document:
+   - Move tasks from "in progress" to "completed"
+   - Update checkpoints as you reach them
+3. Create/update checkpoint reports for completed tasks
+4. Keep the implementation plan document in sync with progress
+5. Ensure bidirectional links between documents remain intact
 
 ### 6. Create a Pull Request
 

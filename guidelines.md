@@ -152,6 +152,12 @@
 ## Project Management
 - Keep project tracking simple, using markdown files that are easy to follow for both humans and AI systems.
 - Break down implementation phases into separate files under 400 lines each.
+- Structure project plans hierarchically:
+  - Phase → Task → Steps
+  - Each phase should have its own document with clear links to parent and child documents
+  - Each task should have defined acceptance criteria
+  - Each task should have a checkpoint to create a commit after completion
+  - Each phase should end with a pull request
 - Track progress against clearly defined phases and acceptance criteria.
 - Document and address blocking issues promptly.
 - Maintain a clear roadmap aligned with the implementation plan.
