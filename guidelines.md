@@ -37,6 +37,8 @@
 - Maintain an up-to-date implementation plan tracking progress.
 - When implementing a feature, always check for existing patterns in the codebase.
 - Keep refactoring and feature development separate where possible.
+- Break down implementation plan into phase-specific documents under 400 lines each.
+- Create checkpoint reports at significant milestones to document progress and provide review guidance.
 
 ## Documentation Standards
 - Update documentation immediately upon decisions, code changes, or refactoring.
@@ -47,7 +49,7 @@
 - Structure documentation with clear entry points and navigable links.
 - Include examples for all core functionality and concepts.
 - Keep implementation details separate from conceptual documentation.
-- Ensure documentation is accessible to both technical and non-technical readers where appropriate.
+- Ensure documentation is accessible and relevant for solo development with AI assistance.
 - All documentation folders must have an index.md file serving as an entry point.
 - Use relative links to connect documents in the knowledge graph structure.
 - Include "Related Documentation" sections to provide cross-references to related areas.
@@ -139,13 +141,20 @@
 
 ## Project Management
 - Keep project tracking simple, using markdown files that are easy to follow for both humans and AI systems.
+- Break down implementation phases into separate files under 400 lines each.
 - Track progress against clearly defined phases and acceptance criteria.
 - Document and address blocking issues promptly.
 - Maintain a clear roadmap aligned with the implementation plan.
 - Use GitHub issues for tracking specific tasks and bugs.
-- Implement regular review periods to assess progress and adjust plans.
+- Use GitHub pull requests for code review and integration.
 - Document decisions and their rationale clearly.
 - Store all project management documents in the docs/project-management directory.
 - Update implementation plan when completing tasks or making significant changes.
+- Create checkpoint reports at each significant milestone:
+  - Store reports in the docs/reports directory
+  - Name reports with date and phase (e.g., 2023-11-15-phase1-checkpoint1.md)
+  - Include summary of changes, review guidance, testing procedures, and next steps
+  - Use checkpoint reports as PR descriptions when submitting for review
+  - Reference checkpoint reports in phase documentation
 
 Following these guidelines helps ensure consistency, clarity, and scalability throughout the project's lifecycle.

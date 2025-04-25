@@ -1,9 +1,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import * as yaml from 'js-yaml';
-import * as $RefParser from 'json-schema-ref-parser';
+
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
+import * as yaml from 'js-yaml';
+import * as $RefParser from 'json-schema-ref-parser';
 
 // Create an instance of Ajv
 const ajv = new Ajv({

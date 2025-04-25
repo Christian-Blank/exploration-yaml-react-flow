@@ -1,0 +1,26 @@
+
+> @schema-first/core@0.1.0 lint /Users/cblank/src/exploration-yaml-react-flow/packages/core
+> eslint src --ext .ts
+
+Warning: React version was set to "detect" in eslint-plugin-react settings, but the "react" package is not installed. Assuming latest React version for linting.
+[0m[0m
+[0m[4m/Users/cblank/src/exploration-yaml-react-flow/packages/core/src/schemas/schema-loader.ts[24m[0m
+[0m    [2m2:1[22m    [31merror[39m    There should be at least one empty line between import groups  [2mimport/order[22m[0m
+[0m    [2m5:1[22m    [31merror[39m    `ajv` import should occur before import of `js-yaml`           [2mimport/order[22m[0m
+[0m    [2m6:1[22m    [31merror[39m    `ajv-formats` import should occur before import of `js-yaml`   [2mimport/order[22m[0m
+[0m   [2m92:59[22m   [33mwarning[39m  Unexpected any. Specify a different type                       [2m@typescript-eslint/no-explicit-any[22m[0m
+[0m   [2m93:37[22m   [33mwarning[39m  Unexpected any. Specify a different type                       [2m@typescript-eslint/no-explicit-any[22m[0m
+[0m  [2m107:101[22m  [33mwarning[39m  Unexpected any. Specify a different type                       [2m@typescript-eslint/no-explicit-any[22m[0m
+[0m[0m
+[0m[4m/Users/cblank/src/exploration-yaml-react-flow/packages/core/src/utils/schema-validator.ts[24m[0m
+[0m   [2m88:21[22m  [33mwarning[39m  Unexpected any. Specify a different type  [2m@typescript-eslint/no-explicit-any[22m[0m
+[0m  [2m107:21[22m  [33mwarning[39m  Unexpected any. Specify a different type  [2m@typescript-eslint/no-explicit-any[22m[0m
+[0m  [2m134:21[22m  [33mwarning[39m  Unexpected any. Specify a different type  [2m@typescript-eslint/no-explicit-any[22m[0m
+[0m  [2m149:21[22m  [33mwarning[39m  Unexpected any. Specify a different type  [2m@typescript-eslint/no-explicit-any[22m[0m
+[0m  [2m183:28[22m  [33mwarning[39m  Unexpected any. Specify a different type  [2m@typescript-eslint/no-explicit-any[22m[0m
+[0m[0m
+[0m[31m[1m✖ 11 problems (3 errors, 8 warnings)[22m[39m[0m
+[0m[31m[1m[22m[39m[31m[1m  3 errors and 0 warnings potentially fixable with the `--fix` option.[22m[39m[0m
+[0m[31m[1m[22m[39m[0m
+[41m[30m ELIFECYCLE [39m[49m [31mCommand failed with exit code 1.[39m
+[43m[30m WARN [39m[49m  Local package.json exists, but node_modules missing, did you mean to install?

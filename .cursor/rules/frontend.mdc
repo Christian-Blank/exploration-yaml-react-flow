@@ -1,5 +1,34 @@
 ---
-description:
-globs:
+description: When working on front-end tasks
+globs: 
 alwaysApply: false
 ---
+# Frontend Development Rules
+
+## Tech Stack
+- Use Next.js 15.3+ for the web application
+- Use React 19.1+ for components
+- Use TypeScript 5.8+ with strict typing
+- Use pnpm for package management
+- Use Node.js v22 (via nvm)
+- Use React Flow for all node visualization
+
+## Code Organization
+- Keep components focused on a single responsibility
+- Utilize React hooks for state management
+- Implement defensive validation for all data
+- Structure components hierarchically for reuse
+- Keep components under 400 lines
+
+## UI/UX Guidelines
+- Build responsive UIs that work across device sizes
+- Implement clear visual hierarchy
+- Provide immediate feedback for user actions
+- Consider accessibility from the beginning
+- Use consistent design patterns
+
+## Testing
+- Use Jest and React Testing Library
+- Test components in isolation
+- Include tests for user interactions
+- Test error states and loading states

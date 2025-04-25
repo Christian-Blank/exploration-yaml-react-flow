@@ -100,11 +100,26 @@ Key documentation sections:
 
 ## Implementation Plan
 
-For the detailed development roadmap, see the [Implementation Plan](./docs/project-management/implementation-plan.md).
+The implementation is organized into six phases:
+
+1. [Project Setup and Core Schema Definition](./docs/project-management/phase-1-project-setup.md)
+2. [Schema Server and Type Generation](./docs/project-management/phase-2-schema-server.md)
+3. [CLI Development](./docs/project-management/phase-3-cli-development.md)
+4. [Basic UI Development](./docs/project-management/phase-4-ui-development.md)
+5. [Process Implementation](./docs/project-management/phase-5-process-implementation.md)
+6. [Integration and Testing](./docs/project-management/phase-6-integration.md)
+
+For the overall implementation plan, see the [Implementation Plan](./docs/project-management/implementation-plan.md).
 
 ## Contributing
 
-Please read our [contribution guidelines](./docs/guides/CONTRIBUTING.md) before submitting a Pull Request.
+To contribute to the project:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
 ## License
 
