@@ -14,7 +14,8 @@
     "format": "nx run-many --target=format --all",
     "clean": "nx run-many --target=clean --all",
     "schema:validate": "echo \"Schema validation not implemented yet\" && exit 0",
-    "schema:generate": "echo \"Schema generation not implemented yet\" && exit 0"
+    "schema:generate": "echo \"Schema generation not implemented yet\" && exit 0",
+    "ci:local": "./bin/check.sh"
   },
   "engines": {
     "node": ">=22.0.0",
