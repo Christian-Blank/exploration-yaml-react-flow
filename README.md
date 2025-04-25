@@ -17,7 +17,7 @@ This project implements a schema-first system where:
 
 ### Prerequisites
 
-- [Node.js v22+](https://nodejs.org/) (recommend using [NVM](https://github.com/nvm-sh/nvm))
+- [Node.js v18+](https://nodejs.org/) (recommend using [NVM](https://github.com/nvm-sh/nvm))
 - [PNPM](https://pnpm.io/) v8+
 - [Python 3.13+](https://www.python.org/)
 - [Poetry 2.1+](https://python-poetry.org/)
@@ -40,29 +40,86 @@ This project implements a schema-first system where:
    poetry install
    ```
 
-### Development
+### Working with the Nx Monorepo
 
-This project uses Nx for monorepo management. Here are some useful commands:
+This project uses [Nx](https://nx.dev/) for monorepo management. The workspace is organized into multiple packages in the `packages/` directory, each with its own responsibilities.
 
-- Build all packages:
-  ```bash
-  pnpm build
-  ```
+#### Monorepo Structure
 
-- Run tests:
-  ```bash
-  pnpm test
-  ```
+- **core**: Shared utilities, schemas, and validation logic
+- **cli**: Command-line interface for working with schemas and nodes
+- **schema-server**: API server for serving and validating schemas
+- **type-generators**: Tools for generating TypeScript and Python types from schemas
+- **web**: Next.js web application for visualization and editing
 
-- Lint code:
-  ```bash
-  pnpm lint
-  ```
+#### Nx Commands
 
-- Format code:
-  ```bash
-  pnpm format
-  ```
+Here are the most common Nx commands you'll use:
+
+```bash
+# Show all projects in the workspace
+npx nx show projects
+
+# View the dependency graph in a browser
+npx nx graph
+
+# List all available targets for a project
+npx nx show project core --targets
+
+# Run a command for all projects
+npx nx run-many --target=build --all
+
+# Run a command for a specific project
+npx nx run core:build
+
+# Run a command for multiple projects
+npx nx run-many --target=build --projects=core,cli
+
+# Only run for projects affected by your changes
+npx nx affected --target=test
+```
+
+We also provide pnpm script aliases for common operations:
+
+```bash
+# Build all packages
+pnpm build
+
+# Run tests
+pnpm test
+
+# Lint code
+pnpm lint
+
+# Format code
+pnpm format
+
+# Clean build outputs
+pnpm clean
+```
+
+#### Package-Specific Commands
+
+Some packages have specific commands:
+
+```bash
+# Start the Next.js development server
+npx nx run web:dev
+
+# Serve the schema server
+npx nx run schema-server:serve
+
+# Generate types from schemas
+npx nx run type-generators:generate
+```
+
+#### Working with Dependencies
+
+Nx automatically manages the build order based on dependencies between packages. For example, if the `cli` package depends on `core`, Nx will build `core` first when you run:
+
+```bash
+npx nx run cli:build
+```
 
 ## Project Structure
 
@@ -73,6 +130,7 @@ exploration-yaml-react-flow/
 │   ├── decisions/              # Decision records
 │   ├── guides/                 # User and developer guides
 │   ├── project-management/     # Project planning and tracking
+│   ├── reports/                # Checkpoint reports
 │   └── specs/                  # Detailed specifications
 ├── packages/                   # Monorepo packages
 │   ├── core/                   # Core library (shared code)
@@ -120,6 +178,8 @@ To contribute to the project:
 3. Commit your changes (`git commit -m 'Add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
+For detailed development workflow information, see our [Development Workflow Guide](./docs/guides/development-workflow.md).
 
 ## License
 
