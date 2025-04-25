@@ -19,18 +19,20 @@ A decision record is a document that captures an important architectural or tech
 1. [Schema-First Approach](./001-schema-first-approach.md) - Using YAML-defined schemas as the single source of truth
 2. [Type Generation Strategy](./002-type-generation-strategy.md) - Automatic generation of TypeScript and Python types from schemas
 3. [Node Structure](./003-node-structure.md) - Core structure and relationships between nodes
+4. [Schema Resolution Strategy](./schema-resolution-strategy.md) - Strategy for schema resolution and code generation using Python
 
 ### Technology Decisions
 
-4. [Monorepo Structure](./004-monorepo-structure.md) - Using nx without nx-cloud for monorepo management
-5. [TypeScript Configuration](./005-typescript-configuration.md) - TypeScript settings and standards
-6. [Python Configuration](./006-python-configuration.md) - Python environment and tooling
+5. [Monorepo Structure](./004-monorepo-structure.md) - Using nx without nx-cloud for monorepo management
+6. [TypeScript Configuration](./005-typescript-configuration.md) - TypeScript settings and standards
+7. [Python Configuration](./006-python-configuration.md) - Python environment and tooling
+8. [Schema Tooling Libraries](./schema-tooling-libraries.md) - Third-party libraries for schema validation, server, and type generation
 
 ### Implementation Decisions
 
-7. [CLI Implementation](./007-cli-implementation.md) - CLI architecture and design
-8. [Schema Server Implementation](./008-schema-server-implementation.md) - Schema server design and API
-9. [Web UI Framework](./009-web-ui-framework.md) - Next.js and React Flow for the web UI
+9. [CLI Implementation](./007-cli-implementation.md) - CLI architecture and design
+10. [Schema Server Implementation](./008-schema-server-implementation.md) - Schema server design and API
+11. [Web UI Framework](./009-web-ui-framework.md) - Next.js and React Flow for the web UI
 
 ## Decision Making Process
 

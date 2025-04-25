@@ -1,4 +1,4 @@
-# Phase 6: Integration and Testing
+# Phase 5: Integration and Testing
 
 ## Objective
 

@@ -11,12 +11,11 @@ This document outlines the implementation plan for creating a schema-first node-
 
 We'll use a stateful development approach, with clearly defined phases, each with its own checklist and acceptance criteria. For detailed task lists and acceptance criteria, see the individual phase documents:
 
-- [Phase 1: Project Setup and Core Schema Definition](./phase-1-project-setup.md)
-- [Phase 2: Schema Server and Type Generation](./phase-2-schema-server.md)
+- [Phase 1: Project Setup, Schema Definition, and Schema Resolution](./phase-1-revised.md)
+- [Phase 2: Node Management and UI Development](./phase-2-node-management.md)
 - [Phase 3: CLI Development](./phase-3-cli-development.md)
-- [Phase 4: Basic UI Development](./phase-4-ui-development.md)
-- [Phase 5: Process Implementation](./phase-5-process-implementation.md)
-- [Phase 6: Integration and Testing](./phase-6-integration.md)
+- [Phase 4: Process Implementation](./phase-4-process-implementation.md)
+- [Phase 5: Integration and Testing](./phase-5-integration.md)
 
 ## Folder Structure
 
@@ -37,24 +36,12 @@ exploration-yaml-react-flow/
 │   │   │   ├── schemas/        # Base schemas and types
 │   │   │   └── utils/          # Shared utilities
 │   │   └── tests/
-│   ├── schema-server/          # Schema serving API
-│   │   ├── src/
-│   │   │   ├── api/            # API endpoints
-│   │   │   ├── services/       # Business logic
-│   │   │   └── utils/          # Utilities
-│   │   └── tests/
-│   ├── cli/                    # Command-line interface
-│   │   ├── src/
-│   │   │   ├── commands/       # CLI commands
-│   │   │   ├── plugins/        # Plugin system
-│   │   │   └── utils/          # CLI utilities
-│   │   └── tests/
-│   ├── type-generators/        # Code generation tools
-│   │   ├── src/
-│   │   │   ├── typescript/     # TypeScript generator
-│   │   │   └── python/         # Python generator
-│   │   └── tests/
-│   └── web/                    # Next.js web application
+│   ├── python/                 # Python packages
+│   │   ├── schema_server/      # FastAPI schema server
+│   │   ├── schema_validator/   # Python schema validator
+│   │   ├── type_generators/    # Code generation tools
+│   │   └── cli/                # Python CLI tools
+│   ├── web/                    # Next.js web application
 │       ├── app/
 │       ├── components/
 │       │   ├── nodes/          # Node components
@@ -101,6 +88,8 @@ exploration-yaml-react-flow/
 - **Language**: Python 3.13+
 - **Type System**: Strongly typed Python (Pydantic 2.11+)
 - **Dependency Management**: Poetry 2.1+
+- **Web Framework**: FastAPI
+- **Schema Validation**: jsonschema
 - **CLI Framework**: Typer
 - **Code Quality**: Black, Ruff
 - **Testing**: pytest
@@ -109,6 +98,7 @@ exploration-yaml-react-flow/
 
 - **Schema Format**: YAML (primary), JSON (canonical)
 - **Schema Standard**: OpenAPI 3.1
+- **Schema References**: URI-based (localhost for development)
 - **Build System**: Nx (without nx-cloud)
 - **Version Control**: Git
 
@@ -116,7 +106,7 @@ exploration-yaml-react-flow/
 
 1. For each development phase:
    - Start by defining the specific schema requirements
-   - Implement the schema in YAML
+   - Implement the schema in YAML using URI-based references
    - Generate JSON schema and type definitions
    - Implement validation and tests
    - Document the implementation and decisions
@@ -136,9 +126,11 @@ exploration-yaml-react-flow/
 
 ## Next Steps
 
-1. Complete remaining tasks in Phase 1
-2. Begin Phase 2 work on the schema server
-3. Continue building out the documentation structure
+1. Refactor schemas to use URI-based references
+2. Implement Python-based schema server with FastAPI
+3. Set up schema validation with jsonschema
+4. Implement code generation for both Python and TypeScript
+5. Develop Python CLI tools for validation and generation
 
 ## Development Guidelines
 

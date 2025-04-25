@@ -1,12 +1,39 @@
+/**
+ * IMPORTANT: This file is deprecated and will be replaced with a Python implementation.
+ * 
+ * See docs/decisions/schema-resolution-strategy.md for the new approach that uses
+ * Python-based schema validation and URI-based references. This file is maintained
+ * temporarily for backwards compatibility until the new implementation is complete.
+ * 
+ * DO NOT ADD NEW FEATURES TO THIS FILE. Any new schema validation functionality
+ * should be implemented in the Python packages/python/schema_validator module.
+ */
+
 import { promises as fs } from 'fs';
 import * as path from 'path';
 
 import Ajv, { ErrorObject } from 'ajv';
 import addFormats from 'ajv-formats';
+import * as yaml from 'js-yaml';
 
 // Using require for json-schema-ref-parser due to module issues
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const $RefParser = require('json-schema-ref-parser');
+
+/**
+ * Interface for schema validator options
+ */
+export interface SchemaValidatorOptions {
+  /**
+   * Base directory for resolving relative paths
+   */
+  baseDir?: string;
+
+  /**
+   * Schema server URL for resolving remote references (e.g. http://localhost:3000)
+   */
+  schemaServerUrl?: string;
+}
 
 /**
  * Interface for validation options
@@ -16,11 +43,6 @@ export interface ValidationOptions {
    * Whether to dereference JSON schema references
    */
   dereference?: boolean;
-
-  /**
-   * Base directory for resolving relative paths
-   */
-  baseDir?: string;
 }
 
 /**
@@ -55,97 +77,117 @@ export interface TypedNode {
  */
 export class SchemaValidator {
   private ajv: Ajv;
-  private schemaBasePath: string;
+  private options: SchemaValidatorOptions;
   private schemaCache: Record<string, object> = {};
 
   /**
    * Creates a new SchemaValidator instance
-   * @param schemaBasePath Base path to schema files
+   * @param options Schema validator options
    */
-  constructor(schemaBasePath: string) {
-    this.schemaBasePath = schemaBasePath;
-    this.ajv = new Ajv({ allErrors: true });
+  constructor(options: SchemaValidatorOptions = {}) {
+    this.options = {
+      baseDir: process.cwd(),
+      schemaServerUrl: 'http://localhost:3000',
+      ...options
+    };
+    this.ajv = new Ajv({ 
+      allErrors: true,
+      loadSchema: this.loadSchemaByUri.bind(this)
+    });
     addFormats(this.ajv);
   }
 
   /**
-   * Loads a schema file from disk
-   * @param type The type of node to load schema for
+   * Loads a schema from a URI (could be a file path or HTTP URL)
+   * @param uri URI of the schema to load
    * @returns The loaded schema object
    */
-  private async loadSchema(type: string): Promise<object> {
-    if (this.schemaCache[type]) {
-      return this.schemaCache[type];
-    }
-
-    const schemaPath = path.join(this.schemaBasePath, `${type}.json`);
-
-    try {
-      // Load and dereference the schema
-      const schema = await $RefParser.dereference(schemaPath);
-      this.schemaCache[type] = schema;
-      return schema;
-    } catch (error: any) {
-      throw new Error(`Failed to load schema for type ${type}: ${error.message}`);
-    }
-  }
-
-  /**
-   * Validates a node against its schema
-   * @param node The node to validate
-   * @returns True if valid, false otherwise
-   */
-  async validate(node: TypedNode): Promise<boolean> {
-    if (!node.type) {
-      throw new Error('Node is missing type property');
-    }
-
-    try {
-      const schema = await this.loadSchema(node.type);
-      const validate = this.ajv.compile(schema);
-      return validate(node);
-    } catch (error: any) {
-      throw new Error(`Validation error: ${error.message}`);
-    }
-  }
-
-  /**
-   * Validates a node and returns any validation errors
-   * @param node The node to validate
-   * @returns Array of validation error messages or null if valid
-   */
-  async validateWithErrors(node: TypedNode): Promise<string[] | null> {
-    if (!node.type) {
-      throw new Error('Node is missing type property');
-    }
-
-    try {
-      const schema = await this.loadSchema(node.type);
-      const validate = this.ajv.compile(schema);
-      const valid = validate(node);
-
-      if (!valid && validate.errors) {
-        return validate.errors.map((err: ErrorObject) => `${err.instancePath} ${err.message}`);
+  private async loadSchemaByUri(uri: string): Promise<object> {
+    if (uri.startsWith('http://') || uri.startsWith('https://')) {
+      // Handle HTTP(S) URIs
+      try {
+        const response = await fetch(uri);
+        if (!response.ok) {
+          throw new Error(`Failed to fetch schema: ${response.statusText}`);
+        }
+        
+        const contentType = response.headers.get('content-type');
+        if (contentType?.includes('yaml') || contentType?.includes('yml') || uri.endsWith('.yaml') || uri.endsWith('.yml')) {
+          const text = await response.text();
+          return yaml.load(text) as object;
+        } else {
+          return await response.json();
+        }
+      } catch (error: any) {
+        throw new Error(`Failed to load schema from URI ${uri}: ${error.message}`);
+      }
+    } else {
+      // Handle file paths
+      let filePath = uri;
+      if (!path.isAbsolute(uri)) {
+        filePath = path.join(this.options.baseDir || process.cwd(), uri);
       }
 
-      return null;
-    } catch (error: any) {
-      throw new Error(`Validation error: ${error.message}`);
+      try {
+        const content = await fs.readFile(filePath, 'utf8');
+        if (filePath.endsWith('.yaml') || filePath.endsWith('.yml')) {
+          return yaml.load(content) as object;
+        } else {
+          return JSON.parse(content);
+        }
+      } catch (error: any) {
+        throw new Error(`Failed to load schema from file ${filePath}: ${error.message}`);
+      }
     }
   }
 
   /**
-   * Validates a file containing JSON data against a schema
-   * @param filePath Path to the JSON file
-   * @returns True if valid, false otherwise
+   * Resolves a schema path to a full URI
+   * @param schemaPath Path to the schema file
+   * @returns Resolved URI
    */
-  async validateFile(filePath: string): Promise<boolean> {
+  private resolveSchemaUri(schemaPath: string): string {
+    if (schemaPath.startsWith('http://') || schemaPath.startsWith('https://')) {
+      return schemaPath;
+    }
+
+    // If using schema server, convert to URI
+    if (this.options.schemaServerUrl && !schemaPath.startsWith('file://')) {
+      const relativePath = schemaPath.replace(/\\/g, '/');
+      return `${this.options.schemaServerUrl}/schemas/${relativePath}`;
+    }
+
+    // Otherwise use file path
+    return schemaPath;
+  }
+
+  /**
+   * Loads a schema file 
+   * @param schemaPath Path to the schema file
+   * @param options Validation options
+   * @returns The loaded schema object
+   */
+  private async loadSchema(schemaPath: string, options: ValidationOptions = {}): Promise<object> {
+    const cacheKey = schemaPath;
+    if (this.schemaCache[cacheKey]) {
+      return this.schemaCache[cacheKey];
+    }
+
     try {
-      const fileData = await fs.readFile(filePath, 'utf8');
-      const node = JSON.parse(fileData) as TypedNode;
-      return this.validate(node);
+      let schema: object;
+      
+      if (options.dereference) {
+        // Dereference the schema to resolve all $refs
+        schema = await $RefParser.dereference(schemaPath);
+      } else {
+        // Just load the schema without dereferencing
+        schema = await this.loadSchemaByUri(schemaPath);
+      }
+      
+      this.schemaCache[cacheKey] = schema;
+      return schema;
     } catch (error: any) {
-      throw new Error(`File validation error: ${error.message}`);
+      throw new Error(`Failed to load schema from ${schemaPath}: ${error.message}`);
     }
   }
 
@@ -153,11 +195,12 @@ export class SchemaValidator {
    * Validate data against a schema
    * @param data The data to validate
    * @param schemaPath Path to the schema file
+   * @param options Validation options
    * @returns Validation result
    */
-  async validateData(data: unknown, schemaPath: string): Promise<ValidationResult> {
+  async validate(data: unknown, schemaPath: string, options: ValidationOptions = {}): Promise<ValidationResult> {
     // Load schema
-    const schema = await this.loadSchema(schemaPath);
+    const schema = await this.loadSchema(schemaPath, options);
 
     // Compile validator
     const validate = this.ajv.compile(schema);
@@ -189,8 +232,38 @@ export class SchemaValidator {
 
     // Determine schema path based on node type
     const schemaPath = path.join(baseSchemaDir, `${node.type}/${node.type}.yaml`);
+    const resolvedUri = this.resolveSchemaUri(schemaPath);
 
-    return this.validateData(node, schemaPath);
+    return this.validate(node, resolvedUri, { dereference: true });
+  }
+
+  /**
+   * Validates a file containing JSON/YAML data against a schema
+   * @param filePath Path to the JSON/YAML file
+   * @param schemaPath Path to the schema file
+   * @returns Validation result
+   */
+  async validateFile(filePath: string, schemaPath?: string): Promise<ValidationResult> {
+    try {
+      const fileData = await fs.readFile(filePath, 'utf8');
+      let data;
+      
+      if (filePath.endsWith('.yaml') || filePath.endsWith('.yml')) {
+        data = yaml.load(fileData);
+      } else {
+        data = JSON.parse(fileData);
+      }
+      
+      if (!schemaPath && data && typeof data === 'object' && 'type' in data) {
+        return this.validateNode(data);
+      } else if (schemaPath) {
+        return this.validate(data, schemaPath);
+      } else {
+        throw new Error('Schema path not provided and node does not have a type property');
+      }
+    } catch (error: any) {
+      throw new Error(`File validation error: ${error.message}`);
+    }
   }
 
   /**

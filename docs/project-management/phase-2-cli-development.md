@@ -1,4 +1,4 @@
-# Phase 3: CLI Development
+# Phase 2: CLI Development
 
 ## Objective
 
