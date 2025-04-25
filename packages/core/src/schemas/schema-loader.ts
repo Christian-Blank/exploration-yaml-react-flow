@@ -11,7 +11,7 @@ const ajv = new Ajv({
   allErrors: true,
   strict: false,
   strictSchema: false,
-  strictTypes: false
+  strictTypes: false,
 });
 
 // Add string formats
@@ -25,7 +25,7 @@ export interface SchemaLoaderOptions {
    * Base directory for resolving relative paths
    */
   baseDir?: string;
-  
+
   /**
    * Whether to dereference schema references
    */
@@ -56,26 +56,26 @@ export class SchemaLoader {
    */
   async loadSchema(schemaPath: string): Promise<object> {
     const fullPath = path.resolve(this.baseDir, schemaPath);
-    
+
     // Check if file exists
     if (!fs.existsSync(fullPath)) {
       throw new Error(`Schema file not found: ${fullPath}`);
     }
-    
+
     // Read file content
     const content = fs.readFileSync(fullPath, 'utf8');
-    
+
     // Parse YAML to object
     const schema = yaml.load(content) as object;
-    
+
     // Dereference schema if needed
-    const processedSchema = this.dereference 
-      ? await $RefParser.dereference(schema as $RefParser.JSONSchema) 
+    const processedSchema = this.dereference
+      ? await $RefParser.dereference(schema as $RefParser.JSONSchema)
       : schema;
-    
+
     // Store schema
     this.schemas.set(schemaPath, processedSchema);
-    
+
     return processedSchema;
   }
 
@@ -88,14 +88,14 @@ export class SchemaLoader {
     if (!schema || typeof schema !== 'object') {
       throw new Error('Invalid schema');
     }
-    
+
     // For OpenAPI schemas, extract the actual schema
     if ('components' in schema && 'schemas' in (schema as any).components) {
       const components = (schema as any).components;
       const schemaName = Object.keys(components.schemas)[0];
       return components.schemas[schemaName];
     }
-    
+
     return schema;
   }
 
@@ -105,28 +105,31 @@ export class SchemaLoader {
    * @param schemaPath Path to the schema file
    * @returns Validation result
    */
-  async validateAgainstSchema(data: unknown, schemaPath: string): Promise<{ valid: boolean; errors: any[] | null }> {
+  async validateAgainstSchema(
+    data: unknown,
+    schemaPath: string
+  ): Promise<{ valid: boolean; errors: any[] | null }> {
     // Load schema if not already loaded
     if (!this.schemas.has(schemaPath)) {
       await this.loadSchema(schemaPath);
     }
-    
+
     const schema = this.schemas.get(schemaPath);
     if (!schema) {
       throw new Error(`Schema not found: ${schemaPath}`);
     }
-    
+
     const jsonSchema = this.convertToJsonSchema(schema);
-    
+
     // Compile schema validator
     const validate = ajv.compile(jsonSchema);
-    
+
     // Validate data
     const valid = validate(data);
-    
+
     return {
       valid: !!valid,
-      errors: validate.errors
+      errors: validate.errors,
     };
   }
 
@@ -145,4 +148,4 @@ export class SchemaLoader {
   clearSchemas(): void {
     this.schemas.clear();
   }
-} 
+}

@@ -26,37 +26,37 @@ export interface CreateNodeOptions {
    * Type of the node
    */
   type: string;
-  
+
   /**
    * Title of the node
    */
   title?: string;
-  
+
   /**
    * Description of the node
    */
   description?: string;
-  
+
   /**
    * Parent node IDs
    */
   parent_ids?: string[];
-  
+
   /**
    * Child node IDs
    */
   child_ids?: string[];
-  
+
   /**
    * Tags for the node
    */
   tags?: string[];
-  
+
   /**
    * Additional metadata
    */
   metadata?: Record<string, unknown>;
-  
+
   /**
    * ID of the creator
    */
@@ -70,7 +70,7 @@ export interface CreateNodeOptions {
  */
 export function createBaseNode(options: CreateNodeOptions): BaseNode {
   const now = new Date().toISOString();
-  
+
   return {
     id: uuidv4(),
     type: options.type,
@@ -83,7 +83,7 @@ export function createBaseNode(options: CreateNodeOptions): BaseNode {
     created_by: options.created_by,
     updated_by: options.created_by,
     tags: options.tags || [],
-    metadata: options.metadata || {}
+    metadata: options.metadata || {},
   };
 }
 
@@ -93,23 +93,26 @@ export function createBaseNode(options: CreateNodeOptions): BaseNode {
  * @param child The child node
  * @returns The updated parent and child nodes
  */
-export function addChildNode(parent: BaseNode, child: BaseNode): { parent: BaseNode; child: BaseNode } {
+export function addChildNode(
+  parent: BaseNode,
+  child: BaseNode
+): { parent: BaseNode; child: BaseNode } {
   // Create new instances to avoid mutating the originals
   const updatedParent = { ...parent, child_ids: [...parent.child_ids] };
   const updatedChild = { ...child, parent_ids: [...child.parent_ids] };
-  
+
   // Update child IDs in parent
   if (!updatedParent.child_ids.includes(child.id)) {
     updatedParent.child_ids.push(child.id);
     updatedParent.updated_at = new Date().toISOString();
   }
-  
+
   // Update parent IDs in child
   if (!updatedChild.parent_ids.includes(parent.id)) {
     updatedChild.parent_ids.push(parent.id);
     updatedChild.updated_at = new Date().toISOString();
   }
-  
+
   return { parent: updatedParent, child: updatedChild };
 }
 
@@ -129,19 +132,19 @@ export function removeChildNode(
   const updatedParent = {
     ...parent,
     child_ids: parent.child_ids.filter(id => id !== childId),
-    updated_at: new Date().toISOString()
+    updated_at: new Date().toISOString(),
   };
-  
+
   let updatedChild: BaseNode | undefined;
-  
+
   if (child) {
     updatedChild = {
       ...child,
       parent_ids: child.parent_ids.filter(id => id !== parent.id),
-      updated_at: new Date().toISOString()
+      updated_at: new Date().toISOString(),
     };
   }
-  
+
   return { parent: updatedParent, child: updatedChild };
 }
 
@@ -190,4 +193,4 @@ export function findChildNodes(parentNode: BaseNode, allNodes: BaseNode[]): Base
  */
 export function findParentNodes(childNode: BaseNode, allNodes: BaseNode[]): BaseNode[] {
   return allNodes.filter(node => childNode.parent_ids.includes(node.id));
-} 
+}
