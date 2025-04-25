@@ -1,5 +1,41 @@
 ---
-description:
-globs:
+description: When creating a commit, pull request, or interact with version control or .git
+globs: 
 alwaysApply: false
 ---
+# Commit Practices
+
+## Commit Structure
+- Use descriptive, concise subject lines (max 72 characters)
+- Structure commit messages following conventional commits format:
+  - `type(scope): description` (e.g., `feat(schema): add base node schema`)
+- Types include: feat, fix, docs, style, refactor, test, chore, perf
+- When including breaking changes, add `BREAKING CHANGE:` in the body
+- Reference issues/tickets where applicable
+
+## Pre-Commit Actions
+- Run linters and formatters before committing
+- Ensure all tests pass locally
+- Consider running `pnpm run ci:local` to catch issues early
+- Review your changes for unintended modifications
+
+## Post-Commit Actions
+- Check off completed items in the implementation plan
+- Update relevant documentation to reflect changes
+- Create/update checkpoint reports when reaching milestones
+- Consider whether the changes warrant a PR for review
+- Keep the project in a consistent state at all times
+
+## Meaningful Commits
+- Keep commits focused on single logical changes
+- Break down large changes into smaller, logical commits
+- Include context in commit messages to explain "why" not just "what"
+- Ensure each commit maintains a working state of the codebase
+
+## Pull Requests
+- Create pull requests for significant changes
+- Update PR description with checkpoint reports when applicable
+- Link PRs to relevant implementation plan items
+- When pushing a commit on a branch with an existing PR, update the PR description to reflect new changes
+
+Following these practices helps maintain a clear development history and supports the stateful development approach.
