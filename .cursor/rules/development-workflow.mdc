@@ -1,5 +1,46 @@
 ---
-description:
-globs:
-alwaysApply: false
+description: 
+globs: 
+alwaysApply: true
 ---
+# Development Workflow Rules
+
+## Development Process
+- Follow a stateful development approach
+- Define clear phases with acceptance criteria
+- Track progress against implementation plan
+- Focus on implementation and the critical path
+- When encountering critical things decide if they can be addressed later
+- At the end of each phase check if we need to revise the plan before entering the next phase
+- Use TDD for critical functionality - use tests as an automated acceptance criteria to know when the task is done
+- Prefer end to end tests over unit tests
+- Update documentation as part of implementation
+
+## Version Control
+- Use descriptive branch names
+- Keep commits focused on single changes
+- Write clear commit messages with context
+- Use pull requests for code review
+- Ensure tests pass before merging
+- When pushing a commit on a branch that has an existing PR, also update the correct file in reports/ and the pr description to keep it in sync with the additional changes
+
+## Code Quality
+- Run linters and formatters before committing
+- Ensure all tests pass locally before pushing
+- Address tech debt in accordance with the plan
+- Follow the same standards for both human and AI-written code
+- Review code for security issues
+
+## Collaboration
+- Document blocking issues promptly
+- Update shared documentation when making decisions
+- Communicate clearly about implementation status
+- Seek feedback early for complex changes
+- Share knowledge about patterns and solutions
+
+## Continuous Improvement
+- Regularly review and update guidelines
+- Identify automation opportunities
+- Document lessons learned
+- Refactor code when patterns emerge
+- Maintain knowledge sharing and documentation

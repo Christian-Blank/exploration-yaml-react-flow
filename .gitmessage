@@ -1,0 +1,24 @@
+# <type>(<scope>): <short description>
+# |<---- Using a maximum of 72 characters ---->|
+
+# Explain why this change is being made and what it accomplishes
+# |<---- Try to limit each line to a maximum of 72 characters ---->|
+
+# --- COMMIT END ---
+# Type can be:
+#    feat     (new feature)
+#    fix      (bug fix)
+#    docs     (documentation)
+#    style    (formatting, no code change)
+#    refactor (refactoring code)
+#    test     (adding tests, refactoring tests)
+#    chore    (updating tasks etc; no code change)
+#    perf     (performance improvements)
+# --------------------
+# Remember to:
+#   - Check off completed items in the implementation plan
+#   - Update relevant documentation
+#   - Update checkpoint reports if reaching a milestone
+#
+# See full commit practices at .cursor/rules/commit-practices.mdc
+# -------------------- 
