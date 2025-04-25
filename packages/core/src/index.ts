@@ -2,11 +2,7 @@
 export { SchemaLoader, SchemaLoaderOptions } from './schemas/schema-loader';
 
 // Export schema validator
-export {
-  SchemaValidator,
-  ValidationOptions,
-  ValidationResult,
-} from './utils/schema-validator';
+export { SchemaValidator, ValidationOptions, ValidationResult } from './utils/schema-validator';
 
 // Export node utilities
 export {
@@ -19,5 +15,5 @@ export {
   isLeafNode,
   findRootNodes,
   findChildNodes,
-  findParentNodes
-} from './utils/node-utils'; 
+  findParentNodes,
+} from './utils/node-utils';

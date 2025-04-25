@@ -79,7 +79,7 @@ export class SchemaValidator {
     }
 
     const schemaPath = path.join(this.schemaBasePath, `${type}.json`);
-    
+
     try {
       // Load and dereference the schema
       const schema = await $RefParser.dereference(schemaPath);
@@ -123,13 +123,11 @@ export class SchemaValidator {
       const schema = await this.loadSchema(node.type);
       const validate = this.ajv.compile(schema);
       const valid = validate(node);
-      
+
       if (!valid && validate.errors) {
-        return validate.errors.map((err: ErrorObject) => 
-          `${err.instancePath} ${err.message}`
-        );
+        return validate.errors.map((err: ErrorObject) => `${err.instancePath} ${err.message}`);
       }
-      
+
       return null;
     } catch (error: any) {
       throw new Error(`Validation error: ${error.message}`);
@@ -160,13 +158,13 @@ export class SchemaValidator {
   async validateData(data: unknown, schemaPath: string): Promise<ValidationResult> {
     // Load schema
     const schema = await this.loadSchema(schemaPath);
-    
+
     // Compile validator
     const validate = this.ajv.compile(schema);
-    
+
     // Validate data
     const valid = validate(data);
-    
+
     return {
       valid: !!valid,
       errors: validate.errors || null,
@@ -191,7 +189,7 @@ export class SchemaValidator {
 
     // Determine schema path based on node type
     const schemaPath = path.join(baseSchemaDir, `${node.type}/${node.type}.yaml`);
-    
+
     return this.validateData(node, schemaPath);
   }
 
@@ -218,4 +216,4 @@ export class SchemaValidator {
   clearSchemas(): void {
     this.schemaCache = {};
   }
-} 
+}
