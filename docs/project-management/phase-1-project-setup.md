@@ -49,18 +49,18 @@ Establish the foundational structure and define minimal viable schemas.
 **Checkpoint:** [Development Environment Setup](../reports/phase1-task2-checkpoint.md)
 
 ### Task 3: Schema Templates Creation
-- [ ] Create initial schema templates:
-  - [ ] Base node schema with common properties
+- [x] Create initial schema templates:
+  - [x] Base node schema with common properties
     - Add id, type fields
     - Add parent_ids, child_ids for graph relationships
     - Add metadata fields
-  - [ ] Process node schema extending base node
+  - [x] Process node schema extending base node
     - Add process-specific fields
     - Define relationships to tasks
-  - [ ] Task node schema extending base node
+  - [x] Task node schema extending base node
     - Add task-specific fields
     - Define completion criteria
-  - [ ] Document node schema extending base node
+  - [x] Document node schema extending base node
     - Add document-specific fields
     - Define content structure
 
@@ -70,7 +70,7 @@ Establish the foundational structure and define minimal viable schemas.
 - Schema templates follow OpenAPI 3.1 standards
 - Schema inheritance is properly implemented
 
-**Checkpoint:** Schema Templates Creation
+**Checkpoint:** [Schema Templates Creation](../reports/2025-04-24-phase1-task3-checkpoint.md)
 
 ### Task 4: Schema Validation Setup
 - [ ] Define schema validation rules based on OpenAPI 3.1
