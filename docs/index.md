@@ -9,6 +9,7 @@ Welcome to the documentation for our Schema-First Node-Based Knowledge Graph Sys
 - [Specifications](./specs/index.md) - Detailed specifications for system components
 - [Guides](./guides/index.md) - User and developer guides
 - [Project Management](./project-management/index.md) - Implementation plans and project tracking
+- [Checkpoint Reports](./reports/index.md) - Milestone-based progress reports and review guidance
 
 ## System Overview
 
@@ -30,4 +31,4 @@ For a quick start, see the following guides:
 
 ## Project Status
 
-To see the current implementation status and upcoming work, refer to the [Implementation Plan](./project-management/implementation-plan.md). 
+To see the current implementation status and upcoming work, refer to the [Implementation Plan](./project-management/implementation-plan.md) and recent [Checkpoint Reports](./reports/index.md). 

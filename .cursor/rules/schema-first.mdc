@@ -1,5 +1,46 @@
 ---
-description:
-globs:
+description: When using schemas, modifying schemas, generating code, changing code-generation code or setup.
+globs: 
 alwaysApply: false
 ---
+# Schema-First Development Rules
+
+## Schema Guidelines
+- YAML is the primary format for schema definitions, JSON is the canonical format for validation
+- All schemas must follow OpenAPI 3.1 standards
+- Base node schema includes: id, type, parent_ids, child_ids, metadata
+- Use composition (JSON Schema `allOf`) for extending schemas
+- Keep schemas focused on data structure, not behavior
+- Include appropriate validation constraints in schemas
+- Use consistent property naming across all schemas
+- Version schemas explicitly and document changes
+
+## Code Generation
+- Never modify auto-generated code directly
+- Regenerate types on schema changes
+- Create wrapper or adapter classes for customization
+
+## Testing Requirements
+- Write tests before implementing features
+- Include tests for failure cases and edge conditions
+- Document any test coverage gaps
+
+## Documentation
+- Update documentation immediately when code or decisions change
+- Document architecture decisions with context and alternatives
+- Keep documentation concise and interconnected
+- Use consistent terminology across all documentation
+- Remove or update outdated information immediately
+
+## Development Process
+- Follow domain-driven design principles
+- Prefer object-oriented over functional programming when appropriate
+- Use composition over inheritance
+- Document tech debt clearly with rationale
+- Keep files under 400 lines where possible
+- Create self-documenting code with clear naming
+
+## Knowledge Graph Structure
+- All entities form node-based directed graph structure
+- Use consistent relationship types across the graph
+- Design with both human readability and machine processing in mind

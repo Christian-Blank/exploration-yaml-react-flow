@@ -1,5 +1,34 @@
 ---
-description:
-globs:
+description: When working on back-end tasks
+globs: 
 alwaysApply: false
 ---
+# Backend Development Rules
+
+## Tech Stack
+- Use Python 3.13+
+- Use Poetry 2.1+ for dependency management
+- Use Pydantic 2.11+ for data validation
+- Use Typer for CLI development
+- Use Black and Ruff for code formatting and linting
+
+## Code Organization
+- Use strongly typed Python throughout
+- Follow domain-driven design principles
+- Implement clear separation of concerns
+- Design services with well-defined boundaries
+- Use dependency injection for testability
+
+## API Design
+- Design APIs with versioning in mind
+- Implement comprehensive error handling
+- Document all API endpoints with examples
+- Validate all input against schemas
+- Return consistent error responses
+
+## Testing
+- Use pytest for all testing
+- Implement unit tests for core functionality
+- Use integration tests for component interactions
+- Use fixtures to minimize test setup duplication
+- Test error handling and edge cases
