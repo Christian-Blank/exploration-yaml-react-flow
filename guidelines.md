@@ -43,6 +43,12 @@
   - Use `pnpm run ci:local` to run all validation checks manually
   - Pre-push hook automatically runs these checks before pushing
   - Use `git push --no-verify` only when absolutely necessary and document why
+- After each meaningful commit:
+  - Check off completed items in the implementation plan
+  - Update relevant documentation to reflect changes
+  - Create/update checkpoint reports when reaching milestones
+  - Consider whether the changes warrant a PR for review
+  - Ensure the project remains in a consistent state at all times
 
 ## Documentation Standards
 - Update documentation immediately upon decisions, code changes, or refactoring.
