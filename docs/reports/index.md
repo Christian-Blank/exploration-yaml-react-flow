@@ -5,6 +5,7 @@ This directory contains checkpoint reports for project phases. Checkpoint report
 ## Phase 1: Project Setup and Core Schema Definition
 
 - [Checkpoint 1: Project Setup](./2023-11-15-phase1-checkpoint1.md) - Initial repository structure and documentation setup
+- [Task 1: Monorepo Setup](./2023-11-20-phase1-task1-checkpoint.md) - Configuration of Nx monorepo structure
 
 ## Phase 2: Schema Server and Type Generation
 

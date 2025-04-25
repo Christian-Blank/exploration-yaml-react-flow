@@ -1,0 +1,57 @@
+{
+  "name": "web",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/web",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "next build",
+        "cwd": "packages/web"
+      },
+      "outputs": [
+        "{workspaceRoot}/packages/web/.next", 
+        "{workspaceRoot}/packages/web/out"
+      ],
+      "dependsOn": [{ "projects": ["core"], "target": "build" }]
+    },
+    "dev": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "next dev",
+        "cwd": "packages/web"
+      }
+    },
+    "start": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "next start",
+        "cwd": "packages/web"
+      },
+      "dependsOn": ["build"]
+    },
+    "lint": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "next lint",
+        "cwd": "packages/web"
+      }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prettier --write \"**/*.{ts,tsx,md,json}\"",
+        "cwd": "packages/web"
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "rimraf .next out",
+        "cwd": "packages/web"
+      }
+    }
+  },
+  "tags": ["web", "application"]
+} 
