@@ -21,7 +21,7 @@ Establish the foundational structure and define minimal viable schemas.
   - Configure ESLint for TypeScript
   - Set up Prettier for consistent formatting
   - Create configuration for Python tools
-- [ ] Set up monorepo structure with nx (without nx-cloud)
+- [x] Set up monorepo structure with nx (without nx-cloud)
   - Initialize nx workspace
   - Configure workspace packages
   - Setup build scripts
@@ -32,7 +32,7 @@ Establish the foundational structure and define minimal viable schemas.
 - Documentation structure follows knowledge graph principles
 - Pre-commit hooks properly set up
 
-**Checkpoint:** [Initial Project Setup](../reports/2023-11-15-phase1-checkpoint1.md)
+**Checkpoint:** [Initial Project Setup](../reports/2023-11-15-phase1-checkpoint1.md), [Monorepo Setup](../reports/2023-11-20-phase1-task1-checkpoint.md)
 
 ### Task 2: Development Environment Configuration
 - [ ] Configure development environment (Node.js v22, Python 3.13+)
