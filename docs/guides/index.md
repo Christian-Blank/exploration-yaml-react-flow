@@ -5,6 +5,7 @@ Welcome to the guides section of our documentation. These guides provide practic
 ## Developer Guides
 
 - [Development Workflow](./development-workflow.md) - Step-by-step guide to the development process
+- [Using Nx Monorepo](./using-nx.md) - Comprehensive guide to working with our Nx monorepo setup
 - [Setting Up Your Environment](./environment-setup.md) - How to set up your development environment
 - [Working with Schemas](./working-with-schemas.md) - Guide to creating and modifying schemas
 
