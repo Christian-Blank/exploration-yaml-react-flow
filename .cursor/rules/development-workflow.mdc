@@ -8,6 +8,11 @@ alwaysApply: true
 ## Development Process
 - Follow a stateful development approach
 - Define clear phases with acceptance criteria
+- Structure project plans hierarchically as Phase → Task → Steps
+- Each phase should have its own document with bidirectional links (parent/child)
+- Each task should have explicit acceptance criteria 
+- Each task should have a checkpoint for creating a commit after completion
+- Each phase should end with a pull request for review
 - Track progress against implementation plan
 - Focus on implementation and the critical path
 - When encountering critical things decide if they can be addressed later
@@ -23,6 +28,7 @@ alwaysApply: true
 - Use pull requests for code review
 - Ensure tests pass before merging
 - When pushing a commit on a branch that has an existing PR, also update the correct file in reports/ and the pr description to keep it in sync with the additional changes
+- Follow detailed commit practices in [commit-practices.mdc](./commit-practices.mdc)
 
 ## Code Quality
 - Run linters and formatters before committing

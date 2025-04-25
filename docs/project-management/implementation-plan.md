@@ -1,5 +1,8 @@
 # Schema-First Node-Based Knowledge Graph System: Implementation Plan
 
+> **Note:** This implementation plan follows the [Project Management Structure](../../.cursor/rules/project-management.mdc) guidelines.
+> Each phase is broken down into separate documents with detailed tasks, steps, and checkpoints.
+
 ## Project Overview
 
 This document outlines the implementation plan for creating a schema-first node-based knowledge graph system for human-AI orchestration. The system uses YAML-defined schemas adhering to OpenAPI 3.1 standards to compile into Python and TypeScript types, centered around node-based entities representing processes and documents.
