@@ -1,5 +1,42 @@
 ---
-description:
-globs:
+description: 
+globs: docs/**
 alwaysApply: false
 ---
+# Documentation Rules
+
+## Content Guidelines
+- Use Markdown for all documentation
+- Structure documentation as a knowledge graph
+- Provide clear entry points for each domain
+- Link related documents explicitly
+- Keep documentation concise and focused
+- Use consistent terminology across all documentation
+
+## Architecture Documentation
+- Document overall system architecture
+- Clearly identify components and their responsibilities
+- Document integration points between components
+- Include diagrams for complex relationships
+- Update architecture documentation when changes occur
+
+## Decision Records
+- Document important decisions with context
+- Include alternatives considered and trade-offs
+- Link decisions to requirements or constraints
+- Update or archive decisions when they change
+- Use consistent format for all decision records
+
+## User Guides
+- Separate end-user documentation from developer documentation
+- Include examples for common operations
+- Provide troubleshooting information
+- Update guides when functionality changes
+- Consider both technical and non-technical audiences
+
+## Code Documentation
+- Write self-documenting code with clear naming
+- Document public APIs and interfaces thoroughly
+- Document any non-obvious implementation details
+- Include examples for complex functionality
+- Mark technical debt clearly with TODO comments

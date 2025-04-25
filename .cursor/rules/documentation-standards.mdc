@@ -1,5 +1,34 @@
 ---
-description:
-globs:
+description: 
+globs: docs/**
 alwaysApply: false
 ---
+# Documentation Standards
+
+## Knowledge Graph Structure
+- All documentation folders must have an index.md file
+- All documents must link to related documents through relative links
+- Each document should include a "Related Documentation" section
+- Cross-references should be bidirectional
+- Documentation should be structured with clear entry points
+
+## Documentation Content
+- Document both the "why" and "how" for significant decisions
+- Include examples for core functionality
+- Use Markdown tables for complex data
+- Include diagrams for complex relationships
+- Keep documents concise and focused
+- Use consistent terminology throughout
+
+## Maintenance
+- Update documentation immediately when code or decisions change
+- Remove outdated or redundant information immediately
+- Store project management documents in docs/project-management
+- Update implementation plan when completing tasks
+
+## Documentation Types
+- Architecture documentation should explain system components and relationships
+- Decision records should include context, options, decision, and consequences
+- Specifications should provide detailed technical requirements
+- Guides should provide step-by-step instructions
+- Project management documents should track progress against clearly defined criteria

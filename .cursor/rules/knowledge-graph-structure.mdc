@@ -1,5 +1,30 @@
 ---
-description:
-globs:
+description: 
+globs: docs/**
 alwaysApply: false
 ---
+# Knowledge Graph Documentation Structure
+
+## Entry Points
+- Every documentation directory must have an index.md file
+- The docs root directory must have an index.md that links to all subdirectories
+- All entry points should clearly describe the contents of their section
+
+## Document Connections
+- Use relative links to connect documents within the knowledge graph
+- All significant documents must include a "Related Documentation" section
+- Ensure bidirectional connections between related documents
+- Cross-reference documents across different sections when appropriate
+
+## Document Structure
+- Each document should have a clear purpose and scope
+- Use headings to organize content hierarchically
+- Include introductory paragraphs explaining the document's purpose
+- End with a conclusion or summary where appropriate
+- Link to supporting documents for additional details
+
+## Maintenance
+- Update links when moving or renaming documents
+- Remove references to deleted documents
+- Maintain consistent terminology across all documents
+- Regularly review the documentation structure for completeness and coherence
