@@ -17,7 +17,7 @@ This project implements a schema-first system where:
 
 ### Prerequisites
 
-- [Node.js v18+](https://nodejs.org/) (recommend using [NVM](https://github.com/nvm-sh/nvm))
+- [Node.js v22+](https://nodejs.org/) (recommend using [NVM](https://github.com/nvm-sh/nvm))
 - [PNPM](https://pnpm.io/) v8+
 - [Python 3.13+](https://www.python.org/)
 - [Poetry 2.1+](https://python-poetry.org/)
@@ -32,6 +32,9 @@ This project implements a schema-first system where:
 
 2. Install Node.js dependencies:
    ```bash
+   # Use the correct Node.js version specified in .nvmrc
+   nvm use
+   # Install dependencies
    pnpm install
    ```
 
