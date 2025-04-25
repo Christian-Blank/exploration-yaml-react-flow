@@ -26,8 +26,8 @@ This project implements a schema-first system where:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/schema-first-knowledge-graph.git
-   cd schema-first-knowledge-graph
+   git clone https://github.com/Christian-Blank/exploration-yaml-react-flow.git
+   cd exploration-yaml-react-flow
    ```
 
 2. Install Node.js dependencies:

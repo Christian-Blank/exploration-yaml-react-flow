@@ -1,45 +1,21 @@
-# User and Developer Guides
+# Guides
 
-This document serves as the entry point to our user and developer guides for the Schema-First Knowledge Graph System.
-
-## Getting Started
-
-- [Setting Up the Development Environment](./development-setup.md) - Instructions for setting up the development environment
-- [Quick Start](./quick-start.md) - A quick start guide to get up and running with the system
-
-## User Guides
-
-- [Understanding the Schema System](./schema-system.md) - Overview of the schema-first approach
-- [Working with Nodes](./working-with-nodes.md) - Guide to creating and managing nodes
-- [Using the CLI](./cli-usage.md) - Comprehensive guide to using the CLI
-- [Using the Web UI](./web-ui-usage.md) - Guide to using the web UI for node visualization and editing
+Welcome to the guides section of our documentation. These guides provide practical instructions and best practices for working with the Schema-First Knowledge Graph System.
 
 ## Developer Guides
 
-- [Contributing Guide](./CONTRIBUTING.md) - How to contribute to the project
-- [Schema Development](./schema-development.md) - Guide to developing schemas
-- [Type Generation](./type-generation.md) - How to generate and use types
-- [CLI Development](./cli-development.md) - Guide to extending and modifying the CLI
-- [UI Development](./ui-development.md) - Guide to extending and modifying the web UI
+- [Development Workflow](./development-workflow.md) - Step-by-step guide to the development process
+- [Setting Up Your Environment](./environment-setup.md) - How to set up your development environment
+- [Working with Schemas](./working-with-schemas.md) - Guide to creating and modifying schemas
 
-## Integration Guides
+## User Guides
 
-- [Event-Driven Integration](./event-driven-integration.md) - How to integrate with event-driven systems
-- [External Systems Integration](./external-systems-integration.md) - How to integrate with external systems
-
-## Best Practices
-
-- [Schema Design Best Practices](./schema-design-best-practices.md) - Best practices for designing schemas
-- [Node Modeling Best Practices](./node-modeling-best-practices.md) - Best practices for modeling nodes
-- [Testing Best Practices](./testing-best-practices.md) - Best practices for testing
-
-## Troubleshooting
-
-- [Common Issues](./common-issues.md) - Solutions to common issues
-- [Debugging Guide](./debugging-guide.md) - Guide to debugging issues
+- [Getting Started](./getting-started.md) - Introduction to using the system
+- [Node Management](./node-management.md) - How to work with knowledge graph nodes
+- [Process Execution](./process-execution.md) - Guide to executing processes
 
 ## Related Documentation
 
-- [Architecture Documentation](../architecture/index.md) - System architecture overview
-- [Decision Records](../decisions/index.md) - Key architecture and technical decisions
-- [Implementation Plan](../project-management/implementation-plan.md) - Current implementation status 
+- [Architecture Documentation](../architecture/index.md)
+- [API Reference](../specs/api-reference.md)
+- [Implementation Plan](../project-management/implementation-plan.md) 

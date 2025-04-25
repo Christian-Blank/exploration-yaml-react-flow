@@ -129,7 +129,7 @@ export class SchemaLoader {
 
     return {
       valid: !!valid,
-      errors: validate.errors,
+      errors: validate.errors || null,
     };
   }
 
