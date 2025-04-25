@@ -35,7 +35,7 @@ Establish the foundational structure and define minimal viable schemas.
 **Checkpoint:** [Initial Project Setup](../reports/2023-11-15-phase1-checkpoint1.md), [Monorepo Setup](../reports/2023-11-20-phase1-task1-checkpoint.md)
 
 ### Task 2: Development Environment Configuration
-- [ ] Configure development environment (Node.js v22, Python 3.13+)
+- [x] Configure development environment (Node.js v22, Python 3.13+)
   - Setup Node.js environment
   - Setup Python environment
   - Configure package managers (pnpm, poetry)
@@ -46,7 +46,7 @@ Establish the foundational structure and define minimal viable schemas.
 - Package managers are working correctly
 - Environment setup is documented
 
-**Checkpoint:** Development Environment Setup
+**Checkpoint:** [Development Environment Setup](../reports/phase1-task2-checkpoint.md)
 
 ### Task 3: Schema Templates Creation
 - [ ] Create initial schema templates:
@@ -114,7 +114,7 @@ Establish the foundational structure and define minimal viable schemas.
 
 ## Checkpoints
 
-- [Checkpoint 1: Project Setup](../reports/2023-11-15-phase1-checkpoint1.md) - Initial repository structure and documentation
+- [Checkpoint 1: Project Setup and Environment Configuration](../reports/2025-04-24-phase1-checkpoint.md) - Repository structure, monorepo, and development environment setup
 
 ## Related Documentation
 
